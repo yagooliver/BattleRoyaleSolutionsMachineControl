@@ -6,6 +6,9 @@ using BattleRoyaleSolutions.Core;
 using BattleRoyaleSolutions.Core.Interfaces;
 using BattleRoyaleSolutions.Core.Interfaces.Repositories;
 using System.Linq;
+using BattleRoyaleSolutions.Application.Models;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace BattleRoyaleSolutions.Application.Application
 {
@@ -13,31 +16,33 @@ namespace BattleRoyaleSolutions.Application.Application
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILocalMachineInfoRepository localMachineInfoRepository;
+        private readonly IMapper _mapper;
 
-        public MachineApplicationService(IUnitOfWork unitOfWork, ILocalMachineInfoRepository repository)
+        public MachineApplicationService(IUnitOfWork unitOfWork, ILocalMachineInfoRepository repository, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             localMachineInfoRepository = repository;
+            _mapper = mapper;
         }
 
-        public bool Save(LocalMachineInfo obj)
+        public bool Save(MachineViewModel obj)
         {
             using (_unitOfWork)
             {
-                localMachineInfoRepository.Add(obj);
+                localMachineInfoRepository.Add(_mapper.Map<LocalMachineInfo>(obj));
                 return _unitOfWork.Commit();
             }
             
         }
 
-        public IList<LocalMachineInfo> GetAll(Expression<Func<LocalMachineInfo, bool>> predicate)
+        public IEnumerable<MachineViewModel> GetAll()
         {
-            return localMachineInfoRepository.GetAll().Where(predicate).ToList();
+            return _mapper.Map<IEnumerable<LocalMachineInfo>, IEnumerable<MachineViewModel>>(localMachineInfoRepository.GetAll());
         }
 
-        public LocalMachineInfo GetById(Guid id)
+        public MachineViewModel GetById(Guid id)
         {
-            return localMachineInfoRepository.GetById(id);
+            return _mapper.Map<MachineViewModel>(localMachineInfoRepository.GetById(id));
         }
 
         public void Remove(Guid id)
@@ -49,11 +54,11 @@ namespace BattleRoyaleSolutions.Application.Application
             }
         }
 
-        public void Update(LocalMachineInfo obj)
+        public void Update(MachineViewModel obj)
         {
             using (_unitOfWork)
             {
-                localMachineInfoRepository.Update(obj);
+                localMachineInfoRepository.Update(_mapper.Map<LocalMachineInfo>(obj));
                 _unitOfWork.Commit();
             }
         }

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using BattleRoyaleSolutions.Core.Entities;
 
-namespace BattleRoyaleSolutions.Core
+namespace BattleRoyaleSolutions.Application.Models
 {
-    public class LocalMachineInfo
+    public class MachineViewModel
     {
         public Guid Id { get; set; }
         public string MachineName { get; set; }
@@ -18,8 +16,19 @@ namespace BattleRoyaleSolutions.Core
         public string ConnectionId { get; set; }
         public double TotalSize { get; set; }
         public double TotalUsed { get; set; }
-        public double TotalAvalible { get; set; }
 
-        public virtual ICollection<CommandLog> CommandLogs { get; set; }
+        private double _TotalAvalible;
+        public double TotalAvalible
+        {
+            get
+            {
+                return _TotalAvalible;
+            }
+            set
+            {
+                _TotalAvalible = TotalSize - TotalUsed;
+            }
+        }
+
     }
 }

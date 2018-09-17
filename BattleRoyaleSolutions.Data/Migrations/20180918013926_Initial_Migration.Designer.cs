@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BattleRoyaleSolutions.Data.Migrations
 {
     [DbContext(typeof(MachineRemoteControlContext))]
-    [Migration("20180917032428_Initial_Migration")]
+    [Migration("20180918013926_Initial_Migration")]
     partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,8 @@ namespace BattleRoyaleSolutions.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Command");
+
+                    b.Property<DateTime>("DateCommand");
 
                     b.Property<Guid>("MachineId");
 
@@ -46,6 +48,9 @@ namespace BattleRoyaleSolutions.Data.Migrations
 
                     b.Property<string>("AntiVirusName")
                         .HasMaxLength(40);
+
+                    b.Property<string>("ConnectionId")
+                        .HasMaxLength(50);
 
                     b.Property<string>("DotNetVersion")
                         .IsRequired()

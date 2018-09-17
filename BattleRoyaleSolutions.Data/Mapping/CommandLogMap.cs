@@ -17,6 +17,9 @@ namespace BattleRoyaleSolutions.Data.Mapping
             builder.Property(c => c.Return)
                 .HasColumnType("varchar(max)")
                 .IsRequired();
+
+            builder.Property(c => c.DateCommand)
+                .IsRequired();
         }
     }
 }

@@ -1,4 +1,6 @@
+using AutoMapper;
 using BattleRoyaleSolutions.Data;
+using BattleRoyaleSolutions.IOC;
 using BattleRoyaleSolutions.Web.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,11 +9,14 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace BattleRoyaleSolutions.Web
 {
     public class Startup
     {
+        public static ServiceProvider Provider { get; private set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +29,8 @@ namespace BattleRoyaleSolutions.Web
         {
             //services.AddDbContext<MachineRemoteControlContext>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("BattleRoyaleSolutionsContext")));
+
+            services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -43,6 +50,10 @@ namespace BattleRoyaleSolutions.Web
 
             //Add SignalR as part of the middleware pipeline
             services.AddSignalR();
+
+            Provider = services.BuildServiceProvider();
+
+            DependencyInjectionResolver.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,6 +9,7 @@ namespace BattleRoyaleSolutions.Core.Entities
         public Guid Id { get; set; }
         public string Command { get; set; }
         public string Return { get; set; }
+        public DateTime DateCommand { get; set; }
         public Guid MachineId { get; set; }
 
         public virtual LocalMachineInfo LocalMachineInfo { get; set; }

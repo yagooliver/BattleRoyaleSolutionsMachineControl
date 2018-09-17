@@ -4,7 +4,7 @@ class Command extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: props.Command
         };
     }
 
@@ -13,8 +13,10 @@ class Command extends Component {
             <div className="form-Control">
                 <label className="form-control">
                     Command:
-        </label>
-                <textarea className="input-control" style={{ width: '100%' }} rows="5" value={this.state.value} className="input-control" onChange={this.props.handleChange} />
+                </label>
+                <textarea style={{ width: '100%' }} rows="5" name="command" value={this.state.value} className="input-control" onChange={this.props.handleChange.bind("command")} />
+                <br />
+                <input type="button" value="Send Command" className="btn btn-success" onClick={this.props.onClick.bind(this)} />
             </div>
         );
     }

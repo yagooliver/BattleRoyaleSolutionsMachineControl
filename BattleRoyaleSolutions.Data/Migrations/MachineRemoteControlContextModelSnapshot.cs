@@ -26,6 +26,8 @@ namespace BattleRoyaleSolutions.Data.Migrations
 
                     b.Property<string>("Command");
 
+                    b.Property<DateTime>("DateCommand");
+
                     b.Property<Guid>("MachineId");
 
                     b.Property<string>("Return");
@@ -44,6 +46,9 @@ namespace BattleRoyaleSolutions.Data.Migrations
 
                     b.Property<string>("AntiVirusName")
                         .HasMaxLength(40);
+
+                    b.Property<string>("ConnectionId")
+                        .HasMaxLength(50);
 
                     b.Property<string>("DotNetVersion")
                         .IsRequired()

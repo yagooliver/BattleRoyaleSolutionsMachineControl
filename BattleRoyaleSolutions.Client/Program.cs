@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace BattleRoyaleSolutions.Client
 {
@@ -15,7 +10,7 @@ namespace BattleRoyaleSolutions.Client
         static void Main(string[] args)
         {
             connection = new HubConnectionBuilder()
-            .WithUrl("https://localhost:44302/hub")
+            .WithUrl("http://localhost:54647/hub")
             .Build();
 
             ConnectToServer();
@@ -30,13 +25,12 @@ namespace BattleRoyaleSolutions.Client
 
         private static async void ConnectToServer()
         {
-            //TODO: Create process to execute commands from web
             connection.On<string>("ReceiveMessage",  (message) =>
             {
                 var newMessage = $"{message}";
                 Console.WriteLine(newMessage);
             });
-
+            ExecuteCommand();
             try
             {
                 await connection.StartAsync();
@@ -46,6 +40,16 @@ namespace BattleRoyaleSolutions.Client
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static void ExecuteCommand()
+        {
+            //TODO: Create process to execute commands from web
+            connection.On<string>("SendCommand", (command) =>
+            {
+                var result = PowerShellExecutor.PowerShellExecutor.ExecuteCommand(command);
+                Console.WriteLine(command);
+            });
         }
 
         private static async void SendMessage(string message)

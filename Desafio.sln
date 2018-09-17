@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{41FDFA90-36D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{0FCCA70E-3A18-431A-9EB9-AA6E1798A994}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{83A20A27-0FF1-428E-BC44-2AB08F6D2B89}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{83A20A27-0FF1-428E-BC44-2AB08F6D2B89}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IOC", "IOC", "{A8030B36-1831-4A27-8224-5DB016097973}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{A8030B36-1831-4A27-8224-5DB016097973}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleRoyaleSolutions.Core", "BattleRoyaleSolutions.Core\BattleRoyaleSolutions.Core.csproj", "{CCEB6D27-AE29-469A-AFA1-2ED55F6A521F}"
 EndProject
@@ -27,7 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CEEB83F1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinService", "WinService", "{A7361654-242E-4726-858B-FA304FFFCDDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleRoyaleSolutions.Client", "BattleRoyaleSolutions.Client\BattleRoyaleSolutions.Client.csproj", "{F3671671-6B30-45BD-AC17-A6D300B509DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleRoyaleSolutions.Client", "BattleRoyaleSolutions.Client\BattleRoyaleSolutions.Client.csproj", "{F3671671-6B30-45BD-AC17-A6D300B509DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleRoyaleSolutions.Application.Test", "BattleRoyaleSolutions.Application.Test\BattleRoyaleSolutions.Application.Test.csproj", "{B3C3C0FB-D0E6-40D7-B07D-99689A0CA996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleRoyaleSolutions.Web.Test", "BattleRoyaleSolutions.Web.Test\BattleRoyaleSolutions.Web.Test.csproj", "{702A1239-3B04-434D-A1F5-6BF9731675DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,14 @@ Global
 		{F3671671-6B30-45BD-AC17-A6D300B509DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3671671-6B30-45BD-AC17-A6D300B509DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3671671-6B30-45BD-AC17-A6D300B509DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C3C0FB-D0E6-40D7-B07D-99689A0CA996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C3C0FB-D0E6-40D7-B07D-99689A0CA996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C3C0FB-D0E6-40D7-B07D-99689A0CA996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C3C0FB-D0E6-40D7-B07D-99689A0CA996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{702A1239-3B04-434D-A1F5-6BF9731675DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{702A1239-3B04-434D-A1F5-6BF9731675DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{702A1239-3B04-434D-A1F5-6BF9731675DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{702A1239-3B04-434D-A1F5-6BF9731675DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +87,8 @@ Global
 		{6EA856A4-2E94-460E-97C3-E34F974EB422} = {A8030B36-1831-4A27-8224-5DB016097973}
 		{A7361654-242E-4726-858B-FA304FFFCDDC} = {41FDFA90-36D2-4CBB-9C28-3D6824355F10}
 		{F3671671-6B30-45BD-AC17-A6D300B509DD} = {A7361654-242E-4726-858B-FA304FFFCDDC}
+		{B3C3C0FB-D0E6-40D7-B07D-99689A0CA996} = {CEEB83F1-23A7-44BC-AE8A-3169FA7CE3C2}
+		{702A1239-3B04-434D-A1F5-6BF9731675DD} = {CEEB83F1-23A7-44BC-AE8A-3169FA7CE3C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96473B9D-1DFA-4842-8C1C-20C10E9F4DD6}

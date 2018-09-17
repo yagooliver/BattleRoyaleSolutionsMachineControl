@@ -20,6 +20,7 @@ namespace BattleRoyaleSolutions.Data.Migrations
                     DotNetVersion = table.Column<string>(maxLength: 20, nullable: false),
                     Ip = table.Column<string>(maxLength: 20, nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
+                    ConnectionId = table.Column<string>(maxLength: 50, nullable: true),
                     TotalSize = table.Column<double>(nullable: false),
                     TotalUsed = table.Column<double>(nullable: false),
                     TotalAvalible = table.Column<double>(nullable: false)
@@ -36,6 +37,7 @@ namespace BattleRoyaleSolutions.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Command = table.Column<string>(nullable: true),
                     Return = table.Column<string>(nullable: true),
+                    DateCommand = table.Column<DateTime>(nullable: false),
                     MachineId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

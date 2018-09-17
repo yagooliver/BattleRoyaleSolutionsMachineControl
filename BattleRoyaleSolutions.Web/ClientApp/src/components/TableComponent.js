@@ -5,11 +5,11 @@ class MachineTable extends Component {
         super(props);
         this.state = { machines: [] };
         fetch('api/Machine/GetAllMachines')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                this.setState({ machines: data, loading: false });
-            });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            this.setState({ machines: data, loading: false });
+        });
     }
 
     render() {
@@ -25,15 +25,15 @@ class MachineTable extends Component {
             </tr>
           </thead>
             <tbody>
-              {this.state.machines.map((machine, i) =>
+              {this.state.machines.map((machine, i) => (
                 <tr key={i}>
                   <td>{machine.machineName}</td>
                   <td>{machine.ip}</td>
                   <td><input type="checkBox" checked={machine.isFirewallActive} disabled /></td>
                   <td><input type="checkBox" checked={machine.isActive} disabled /></td>
-                  <td><input type="checkBox"></input></td>
+                  <td><input type="checkBox" /></td>
                 </tr>
-               )}
+               ))}
             </tbody>
         </table>
       );

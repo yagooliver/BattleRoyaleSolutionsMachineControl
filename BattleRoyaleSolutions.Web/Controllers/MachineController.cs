@@ -1,42 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using BattleRoyaleSolutions.Core;
 using Microsoft.AspNetCore.SignalR;
 using BattleRoyaleSolutions.Web.Hubs;
 using System.Threading.Tasks;
 using BattleRoyaleSolutions.Application.Interfaces;
 using System.Linq;
+using BattleRoyaleSolutions.Application.Models;
 
 namespace BattleRoyaleSolutions.Web.Controllers
 {
     [Route("api/[controller]")]
     public class MachineController : Controller
     {
-        private readonly IHubContext<ApplicationHub> hubContext;
         private readonly IMachineApplicationService machineApplicationService;
+        private readonly IHubContext<ApplicationHub> _hubContext;
 
-        public MachineController(IMachineApplicationService _machineApplicationService)
+        public MachineController(IMachineApplicationService _machineApplicationService, IHubContext<ApplicationHub> hubContext)
         {
             machineApplicationService = _machineApplicationService;
+            _hubContext = hubContext;
         }
 
         [HttpGet("[action]")]
-        public List<LocalMachineInfo> GetAllMachines()
+        public List<MachineViewModel> GetAllMachines()
         {
-            var machines = machineApplicationService.GetAll(x => x.IsActive).ToList();
+            var machines = machineApplicationService.GetAll().Where(x => x.IsActive).ToList();
+
             return machines;
         }
 
-        [HttpGet("[action]")]
-        public async Task<JsonResult> SendCommand(List<string> machineIds, string command)
+        [HttpPost("[action]")]
+        public async Task<string> SendCommand(List<string> machineIds, string command)
         {
-            foreach(var id in machineIds)
+            foreach (var id in machineIds)
             {
                 var machine = machineApplicationService.GetById(Guid.Parse(id));
                 try
                 {
-                    await hubContext.Clients.Client(machine.ConnectionId).SendAsync("SendCommand", command);
+                    await _hubContext.Clients.Client(machine.ConnectionId).SendAsync("SendCommand", command);
                 }
                 catch
                 {
@@ -44,7 +46,7 @@ namespace BattleRoyaleSolutions.Web.Controllers
                 }
 
             }
-            return null;
+            return "";
         }
     }
 }
