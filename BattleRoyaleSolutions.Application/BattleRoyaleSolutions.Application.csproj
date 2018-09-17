@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+	<TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BattleRoyaleSolutions.Core\BattleRoyaleSolutions.Core.csproj" />
+  </ItemGroup>
+
+</Project>
