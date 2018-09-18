@@ -6,28 +6,27 @@ using BattleRoyaleSolutions.Core.Interfaces;
 using BattleRoyaleSolutions.Core.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace BattleRoyaleSolutions.Application.Application
 {
     public class CommandLogApplicationService : ICommandLogApplicationService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ICommandLogRepository commandLogRepository;
+        private readonly ICommandLogRepository _commandLogRepository;
         private readonly IMapper _mapper;
 
         public CommandLogApplicationService(IUnitOfWork unitOfWork, ICommandLogRepository _commandLogRepository, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            commandLogRepository = _commandLogRepository;
+            this._commandLogRepository = _commandLogRepository;
+            _mapper = mapper;
         }
 
         public bool Save(CommandLogViewModel obj)
         {
             using (_unitOfWork)
             {
-                commandLogRepository.Add(_mapper.Map<CommandLog>(obj));
+                _commandLogRepository.Add(_mapper.Map<CommandLog>(obj));
                 return _unitOfWork.Commit();
             }
 
@@ -35,19 +34,19 @@ namespace BattleRoyaleSolutions.Application.Application
 
         public IEnumerable<CommandLogViewModel> GetAll()
         {
-            return _mapper.Map<IEnumerable<CommandLog>, IEnumerable<CommandLogViewModel>>(commandLogRepository.GetAll());
+            return _mapper.Map<IEnumerable<CommandLog>, IEnumerable<CommandLogViewModel>>(_commandLogRepository.GetAll());
         }
 
         public CommandLogViewModel GetById(Guid id)
         {
-            return _mapper.Map<CommandLogViewModel>(commandLogRepository.GetById(id));
+            return _mapper.Map<CommandLogViewModel>(_commandLogRepository.GetById(id));
         }
 
         public void Remove(Guid id)
         {
             using (_unitOfWork)
             {
-                commandLogRepository.Remove(id);
+                _commandLogRepository.Remove(id);
                 _unitOfWork.Commit();
             }
         }
@@ -56,7 +55,7 @@ namespace BattleRoyaleSolutions.Application.Application
         {
             using (_unitOfWork)
             {
-                commandLogRepository.Update(_mapper.Map<CommandLog>(obj));
+                _commandLogRepository.Update(_mapper.Map<CommandLog>(obj));
                 _unitOfWork.Commit();
             }
         }

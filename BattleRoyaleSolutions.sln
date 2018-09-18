@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleRoyaleSolutions.Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleRoyaleSolutions.Application.Test", "BattleRoyaleSolutions.Application.Test\BattleRoyaleSolutions.Application.Test.csproj", "{B3C3C0FB-D0E6-40D7-B07D-99689A0CA996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleRoyaleSolutions.Web.Test", "BattleRoyaleSolutions.Web.Test\BattleRoyaleSolutions.Web.Test.csproj", "{702A1239-3B04-434D-A1F5-6BF9731675DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleRoyaleSolutions.Web.Test", "BattleRoyaleSolutions.Web.Test\BattleRoyaleSolutions.Web.Test.csproj", "{702A1239-3B04-434D-A1F5-6BF9731675DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

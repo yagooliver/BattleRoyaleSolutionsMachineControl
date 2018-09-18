@@ -36,8 +36,9 @@ namespace BattleRoyaleSolutions.Web.Test.ControllerTest
             };
 
             var mockMachine = new Mock<IMachineApplicationService>();
-            mockMachine.Setup(x => x.GetAll()).Returns(machines);
             var mockHub = new Mock<IHubContext<ApplicationHub>>();
+
+            mockMachine.Setup(x => x.GetAll()).Returns(machines);
             var controller = new MachineController(mockMachine.Object, mockHub.Object);
             var result = controller.GetAllMachines();
             CollectionAssert.AreEqual(machines, result);
